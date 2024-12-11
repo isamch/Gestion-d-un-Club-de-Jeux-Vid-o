@@ -105,6 +105,13 @@ FROM
     JOIN emprunter ON emprunter.member_id = member.member_id
     JOIN jeu ON emprunter.jeu_id = jeu.jeu_id
     GROUP BY member.user_name
-) AS tot;
+) AS subselect;
 
 
+
+
+-- member specific by game:
+SELECT jeu.titre , member.user_name FROM jeu
+INNER JOIN emprunter ON emprunter.jeu_id = jeu.jeu_id
+INNER JOIN member ON emprunter.member_id = member.member_id
+WHERE member.user_name = 'Yassine10';
